@@ -1,20 +1,20 @@
 import java.util.Arrays;
 
 public class InsertionSort<T extends Comparable<T>> implements IOrdenador<T> {
-    private int comparacoes;
-    private int movimentacoes;
+    private long comparacoes;
+    private long movimentacoes;
     private double tempoOrdenacao;
     private double inicio;
 
     private double nanoToMilli = 1.0/1_000_000;
 
     @Override
-    public int getComparacoes() {
+    public long getComparacoes() {
         return comparacoes;
     }
 
     @Override
-    public int getMovimentacoes() {
+    public long getMovimentacoes() {
         return movimentacoes;
     }
 

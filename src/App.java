@@ -37,22 +37,47 @@ public class App {
     }
 
 
-    public static void main(String[] args) {
-        int tam = 20;
-        Integer[] vetor = gerarVetorObjetos(tam);
+    static void testarOrdenadores(int tamanho) {
+        Integer[] vetor = gerarVetorObjetos(tamanho);
 
         BubbleSort<Integer> bolha = new BubbleSort<>();
+        InsertionSort<Integer> insercao = new InsertionSort<>();
+        SelectionSort<Integer> selecao = new SelectionSort<>();
 
         Integer[] vetorOrdenadoBolha = bolha.ordenar(vetor);
+        Integer[] vetorOrdenadoInsercao = insercao.ordenar(vetor);
+        Integer[] vetorOrdenadoSelecao = selecao.ordenar(vetor);
 
-        System.out.println("\nVetor ordenado método Bolha:");
-        System.out.println("Comparações: " + bolha.getComparacoes());
-        System.out.println("Movimentações: " + bolha.getMovimentacoes());
-        System.out.println("Tempo de ordenação (ms): " + bolha.getTempoOrdenacao());
+        System.out.println("Tamanho do vetor: " + tamanho);
+        System.out.println("-----------------------------------------------");
 
-        /* TO DO
-        *Fazer a implementacao do restante do main para a ordenacao 
-        *  com os algoritmos InsertionSort e SelectionSort
-        */
+        System.out.println("BubbleSort:");
+        System.out.println("  Comparações:            " + bolha.getComparacoes());
+        System.out.println("  Movimentações:          " + bolha.getMovimentacoes());
+        System.out.println("  Tempo de ordenação (ms): " + bolha.getTempoOrdenacao());
+
+        System.out.println("InsertionSort:");
+        System.out.println("  Comparações:            " + insercao.getComparacoes());
+        System.out.println("  Movimentações:          " + insercao.getMovimentacoes());
+        System.out.println("  Tempo de ordenação (ms): " + insercao.getTempoOrdenacao());
+
+        System.out.println("SelectionSort:");
+        System.out.println("  Comparações:            " + selecao.getComparacoes());
+        System.out.println("  Movimentações:          " + selecao.getMovimentacoes());
+        System.out.println("  Tempo de ordenação (ms): " + selecao.getTempoOrdenacao());
+
+        System.out.println("===============================================\n");
+    }
+
+    public static void main(String[] args) {
+        System.out.println("\n=== Comparação de Algoritmos de Ordenação ===\n");
+
+        for (int tam : tamanhosTestePequeno) {
+            testarOrdenadores(tam);
+        }
+
+        for (int tam : tamanhosTesteMedio) {
+            testarOrdenadores(tam);
+        }
     }
 }
