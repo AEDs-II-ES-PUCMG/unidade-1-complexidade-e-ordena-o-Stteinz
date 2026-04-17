@@ -1,12 +1,14 @@
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class MergeSort<T extends Comparable<T>> implements IOrdenador<T> {
     private long comparacoes;
     private long movimentacoes;
     private double tempoOrdenacao;
     private double inicio;
+    private Comparator<T> comparador;
 
-    private double nanoToMilli = 1.0/1_000_000;
+    private double nanoToMilli = 1.0 / 1_000_000;
 
     @Override
     public long getComparacoes() {
@@ -23,18 +25,24 @@ public class MergeSort<T extends Comparable<T>> implements IOrdenador<T> {
         return tempoOrdenacao;
     }
 
-    private void iniciar(){
+    private void iniciar() {
         this.comparacoes = 0;
         this.movimentacoes = 0;
         this.inicio = System.nanoTime();
     }
 
-    private void terminar(){
+    private void terminar() {
         this.tempoOrdenacao = (System.nanoTime() - this.inicio) * nanoToMilli;
     }
 
     @Override
     public T[] ordenar(T[] dados) {
+        return ordenar(dados, (a, b) -> a.compareTo(b));
+    }
+
+    @Override
+    public T[] ordenar(T[] dados, Comparator<T> comparador) {
+        this.comparador = comparador;
         T[] dadosOrdenados = Arrays.copyOf(dados, dados.length);
         iniciar();
         mergesort(dadosOrdenados, 0, dadosOrdenados.length - 1);
@@ -62,7 +70,7 @@ public class MergeSort<T extends Comparable<T>> implements IOrdenador<T> {
 
         while (i <= meio && j <= direita) {
             comparacoes++;
-            if (vetor[i].compareTo(vetor[j]) <= 0) {
+            if (comparador.compare(vetor[i], vetor[j]) <= 0) {
                 temp[k] = vetor[i];
                 i++;
             } else {
