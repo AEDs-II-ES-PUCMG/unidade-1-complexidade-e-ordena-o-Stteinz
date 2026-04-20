@@ -84,4 +84,9 @@ public abstract class Produto implements Comparable<Produto> {
     }
 
     public abstract String gerarDadosTexto();
+
+    public Object getDescricao() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getDescricao'");
+    }
 }
